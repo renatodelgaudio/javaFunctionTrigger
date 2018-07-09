@@ -21,4 +21,9 @@ node {
       junit '**/target/surefire-reports/TEST-*.xml'
       archive 'target/*.jar'
    }
+   stage('Deploy') {
+         echo "Deploying to Microsoft Azure"
+         sh "'${mvnHome}/bin/mvn' azure-functions:deploy"
+   }
+
 }
