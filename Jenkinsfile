@@ -12,7 +12,7 @@ node {
       sh "${jdk}/bin/java -version"
    }
    stage('Build') {
-     sh "'${mvnHome}/bin/mvn' -P build-docker clean package"
+     sh "'${mvnHome}/bin/mvn' clean package"
      stash includes: 'target/azure-functions/*.zip', name: 'targetfiles'
    }
    stage('Test') {

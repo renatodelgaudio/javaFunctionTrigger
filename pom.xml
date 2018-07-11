@@ -159,6 +159,9 @@
     <profiles>
         <profile>
             <id>build-docker</id>
+            <activation>
+                <os><family>unix</family></os>
+            </activation>
 
             <build>
                 <pluginManagement>
