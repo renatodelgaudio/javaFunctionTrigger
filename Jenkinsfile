@@ -13,6 +13,7 @@ node {
    }
    stage('Build') {
      sh "'${mvnHome}/bin/mvn' clean package"
+     sh "'${mvnHome}/bin/mvn' azure-functions:package"
      stash includes: 'target/azure-functions/*.zip', name: 'targetfiles'
    }
    stage('Test') {
