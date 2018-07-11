@@ -26,7 +26,7 @@ node {
    stage('Deploy') {
          echo "Deploying to Microsoft Azure"
          unstash 'targetfiles'
-         zip -r myfunction.zip target/azure-functions/javafunctiontrigger-20180702153310658/
+         sh "zip -r myfunction.zip target/azure-functions/javafunctiontrigger-20180702153310658"
          sh "az functionapp deployment source config-zip  -g OneMonthBasic -n javafunctiontriggerdocker --src myfunction.zip"
          // sh "'${mvnHome}/bin/mvn' azure-functions:deploy"
    }
