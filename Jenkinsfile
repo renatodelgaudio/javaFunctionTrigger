@@ -12,7 +12,8 @@ node {
       sh "${jdk}/bin/java -version"
    }
    stage('Build') {
-     sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+     sh "'${mvnHome}/bin/mvn' -P build-docker clean package"
+     stash includes: 'target/azure-functions/*.zip', name: 'targetfiles'
    }
    stage('Test') {
         sh "'${mvnHome}/bin/mvn' verify"
@@ -23,7 +24,9 @@ node {
    }
    stage('Deploy') {
          echo "Deploying to Microsoft Azure"
-         sh "'${mvnHome}/bin/mvn' azure-functions:deploy"
+         unstash 'targetfiles'
+         sh "az functionapp deployment source config-zip  -g OneMonthBasic -n javafunctiontriggerdocker --src target/azure-functions/javafunctiontrigger-20180702153310658.zip"
+         // sh "'${mvnHome}/bin/mvn' azure-functions:deploy"
    }
 
 }
