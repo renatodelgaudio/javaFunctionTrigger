@@ -5,6 +5,8 @@ node {
       // Get the Maven tool.
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.
+
+      checkout scm
       mvnHome = tool 'M3'
       jdk = tool 'JDK8'
       env.JAVA_HOME = "${jdk}"
