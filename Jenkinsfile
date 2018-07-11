@@ -12,7 +12,7 @@ node {
       sh "${jdk}/bin/java -version"
    }
    stage('Build') {
-     sh "'${mvnHome}/bin/mvn' clean package"
+     sh "'${mvnHome}/bin/mvn' -P build-docker clean package"
    }
    stage('Test') {
         sh "'${mvnHome}/bin/mvn' verify"
