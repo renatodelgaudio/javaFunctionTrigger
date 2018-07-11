@@ -1,7 +1,7 @@
 node {
    def mvnHome
    stage('Preparation') { // for display purposes
-      git 'https://github.com/renatodelgaudio/javaFunctionTrigger.git'
+     // git 'https://github.com/renatodelgaudio/javaFunctionTrigger.git'
       // Get the Maven tool.
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.
