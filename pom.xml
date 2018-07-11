@@ -16,10 +16,10 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <azure.functions.maven.plugin.version>1.0.0-beta-2</azure.functions.maven.plugin.version>
         <azure.functions.java.library.version>1.0.0-beta-4</azure.functions.java.library.version>
-        <functionAppName>javafunctiontrigger-20180702153310658</functionAppName>
+        <functionAppName>renatofaasdocker</functionAppName>
         <functionAppRegion>westus</functionAppRegion>
         <stagingDirectory>${project.build.directory}/azure-functions/${functionAppName}</stagingDirectory>
-        <functionResourceGroup>java-functions-group</functionResourceGroup>
+        <functionResourceGroup>renatofaasdocker</functionResourceGroup>
     </properties>
 
     <dependencyManagement>
