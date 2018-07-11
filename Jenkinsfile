@@ -22,9 +22,11 @@ node {
       archive 'target/*.jar'
    }
    stage('Deploy') {
+        // TODO Create/Update a Function app using the docker container as base OS
          echo "Deploying to Microsoft Azure"
-         sh "zip -r myfunction.zip target/azure-functions/javafunctiontrigger-20180702153310658"
-         sh "az functionapp deployment source config-zip  -g java-functions-group -n javafunctiontrigger-20180702153310658 --src myfunction.zip"
+        // sh "zip -r myfunction.zip target/azure-functions/javafunctiontrigger-20180702153310658"
+        sh "zip -r myfunction.zip target/azure-functions/javafunctiontrigger-20180702153310658"
+        sh "az functionapp deployment source config-zip  -g renatofaasdocker -n javafunctiontrigger-20180702153310658 --src myfunction.zip"
          // sh "'${mvnHome}/bin/mvn' azure-functions:deploy"
    }
 
