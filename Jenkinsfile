@@ -12,7 +12,8 @@ node {
       sh "${jdk}/bin/java -version"
    }
    stage('Build') {
-     sh "'${mvnHome}/bin/mvn' clean install"
+     sh "'${mvnHome}/bin/mvn' clean package"
+     sh "docker build -t renatofaasdocker ."
    }
    stage('Test') {
         sh "'${mvnHome}/bin/mvn' verify"
@@ -22,6 +23,7 @@ node {
       archive 'target/*.jar'
    }
    stage('Deploy') {
+        // TODO Push docker image to Azure Registry
         // TODO Create/Update a Function app using the docker container as base OS
          echo "Deploying to Microsoft Azure"
         // sh "zip -r myfunction.zip target/azure-functions/javafunctiontrigger-20180702153310658"
