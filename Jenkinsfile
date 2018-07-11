@@ -13,8 +13,6 @@ node {
    }
    stage('Build') {
      sh "'${mvnHome}/bin/mvn' clean package"
-     sh "'${mvnHome}/bin/mvn' azure-functions:package"
-  //   stash includes: 'target/azure-functions/*', name: 'targetfiles'
    }
    stage('Test') {
         sh "'${mvnHome}/bin/mvn' verify"
@@ -25,9 +23,8 @@ node {
    }
    stage('Deploy') {
          echo "Deploying to Microsoft Azure"
-       //  unstash 'targetfiles'
          sh "zip -r myfunction.zip target/azure-functions/javafunctiontrigger-20180702153310658"
-         sh "az functionapp deployment source config-zip  -g OneMonthBasic -n javafunctiontriggerdocker --src myfunction.zip"
+         sh "az functionapp deployment source config-zip  -g OneMonthBasic -n javafunctiontrigger-20180702153310658 --src myfunction.zip"
          // sh "'${mvnHome}/bin/mvn' azure-functions:deploy"
    }
 
