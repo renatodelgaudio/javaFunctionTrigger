@@ -79,6 +79,25 @@
                     <artifactId>maven-dependency-plugin</artifactId>
                     <version>3.1.1</version>
                 </plugin>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>1.4.0</version>
+                    <executions>
+                        <execution>
+                            <id>default</id>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <repository>${project.artifactId}</repository>
+                        <buildArgs>
+                            <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                        </buildArgs>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
 
@@ -153,12 +172,16 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 
-    <profiles>
+<!--    <profiles>
         <profile>
-            <id>build-docker</id>
+            <id>buildDocker</id>
             <activation>
                 <os><family>unix</family></os>
             </activation>
@@ -196,6 +219,6 @@
             </build>
         </profile>
     </profiles>
-
+-->
 
 </project>
